@@ -116,10 +116,10 @@ def evaluate_predictions(X_test, y_test, model, model_name):
     print(classification_report(
         y_test, predictions, target_names=["No", "Yes"], zero_division=0))
 
-    # Calculate RUC curve
+    # Calculate ROC curve
     fpr, tpr, thresholds = roc_curve(y_test, y_score)
     roc_auc = auc(fpr, tpr)
-    # Plot RUC curve
+    # Plot ROC curve
     plt.figure()
     plt.plot(fpr, tpr, label=f'ROC curve (area = {roc_auc:.2f})')
     plt.plot([0, 1], [0, 1], 'k--')
@@ -169,7 +169,7 @@ def main():
     evaluate_predictions(
         X_test, y_test, trained_models["random_forest"], "Random Forest")
     
-    print(f"\nRUC curve plots saved at: 'Logistic_Reg_RUC.jpg' & 'Random_Forest_RUC.jpg")
+    print(f"\nROC curve plots saved at: 'Logistic_Regression.jpg' & 'Random_Forest.jpg")
 
 
 if __name__ == '__main__':
