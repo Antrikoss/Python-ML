@@ -40,7 +40,7 @@ def add_extra_futures(df):
         "StreamingTV", "StreamingMovies", "MultipleLines"
     ]
 
-    # Handle internet service values
+    # Calculate the number of services for each customer
     df["num_services"] = df[services].isin(
         ["Yes", "DSL", "Fiber optic"]).sum(axis=1)
 
@@ -116,7 +116,7 @@ def evaluate_predictions(X_test, y_test, model, model_name):
     print(classification_report(
         y_test, predictions, target_names=["No", "Yes"], zero_division=0))
 
-    # Calculate ROC curve
+    # Calculate fpr, tpr points and draw ROC curve
     fpr, tpr, thresholds = roc_curve(y_test, y_score)
     roc_auc = auc(fpr, tpr)
     # Plot ROC curve
